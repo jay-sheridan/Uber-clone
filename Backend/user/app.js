@@ -11,6 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/users', userRoute);
+app.use('/', userRoute);
 
 module.exports = app;
