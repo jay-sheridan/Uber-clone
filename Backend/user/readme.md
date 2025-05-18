@@ -20,7 +20,7 @@ Register a new user account.
   }
   ```
 
-## Response
+### Response
 - **Status:** `201 Created`: Returns a JSON object with `token` and the created `user`.
 - **Data (JSON)**:
     ```json
@@ -72,4 +72,69 @@ Logs in an existing user by validating credentials and returning a JWT token.
       ``` 
 - **400 Bad Request**: Returns an array of validation errors if inputs are invalid.
 - **401 Unauthorized**: Returns a message if credentials are incorrect.
+- **500 Internal Server Error**: Returns a generic error message for unexpected errors.
+
+---
+
+## `/users/profile` Endpoint
+
+### Description
+Retrieves the profile of the currently authenticated user.
+
+### Request
+- **HTTP Method:** `GET`
+- **Endpoint:** `/users/profile`
+- **Request Body:** *None*
+
+### Authentication
+- **Authentication Required**: Yes
+- **Headers**: 
+  - `Authorization`: `Bearer <token>` (JWT token)
+####  or ####
+- **cookies**: 
+  - `token`: `<token>` (JWT token)
+  
+### Response
+- **200 OK**:
+  ```json
+  {
+      "id": "string (user ID)",
+      "fullName": {
+          "firstName": "string",
+          "lastName": "string (optional)"
+      },
+      "email": "valid email"
+  }
+  ```
+- **401 Unauthorized**: Returns a message if user is not authenticated.
+- **500 Internal Server Error**: Returns a generic error message for unexpected errors.
+
+---
+
+## `/users/logout` Endpoint
+
+### Description
+Logs out the currently authenticated user by clearing the token and adding it to a blacklist.
+
+### Request
+- **HTTP Method:** `GET`
+- **Endpoint:** `/users/logout`
+- **Request Body:** *None*
+
+### Authentication
+- **Authentication Required**: Yes
+- **Headers**: 
+  - `Authorization`: `Bearer <token>` (JWT token)
+####  or ####
+- **cookies**: 
+  - `token`: `<token>` (JWT token)
+
+### Response
+- **200 OK**:
+  ```json
+  {
+    "message": "Logged out successfully"
+  }
+  ```
+- **401 Unauthorized**: Returns a message if user is not authenticated.
 - **500 Internal Server Error**: Returns a generic error message for unexpected errors.
