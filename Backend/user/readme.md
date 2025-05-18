@@ -22,7 +22,7 @@ Register a new user account.
 
 ## Response
 - **Status:** `201 Created`: Returns a JSON object with `token` and the created `user`.
-- **Body (JSON)**:
+- **Data (JSON)**:
     ```json
     {
         "token": "string (JWT token)",
