@@ -12,5 +12,6 @@ app.use('/captains', expressProxy(captainServiceUrl));
 
 
 app.listen(gatewayPort, () => {
+    
     console.log(`Gateway is running on port ${gatewayPort}`);
 });
